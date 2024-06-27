@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora Básica</title>
+<link href="style.css" rel="stylesheet" type="text/css"/>
+<script>
+    // Função validar se uma string é um número
+    function isNumber(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+    //Exercício 1: Calculadora de Média
+    function calcularMedia() {
+        // Solicitar as notas ao usuário
+        var nota1 = prompt("Insira a primeira nota:");
+        var nota2 = prompt("Insira a segunda nota:");
+        var nota3 = prompt("Insira a terceira nota:");
+
+        // Verificar se as notas são válidas
+        if (!isNumber(nota1) || !isNumber(nota2) || !isNumber(nota3)) {
+            alert("Por favor, insira notas válidas!");
+            return;
+        }
+
+        // Converter para números
+        nota1 = parseFloat(nota1);
+        nota2 = parseFloat(nota2);
+        nota3 = parseFloat(nota3);
+
+        // Calcular a média
+        var media = (nota1 + nota2 + nota3) / 3;
+
+        // Exibir a média
+        alert("A média das notas é: " + media.toFixed(2));
+    }
+    //Exercício 2: Calculadora Básica (ex2.html)
+
+    // Função para calcular o resultado com base na operação
+    function calcular(operador, num1, num2) {
+        switch (operador) {
+            case "+":
+            case "soma":
+                return num1 + num2;
+            case "-":
+            case "subtracao":
+                return num1 - num2;
+            case "*":
+            case "multiplicacao":
+                return num1 * num2;
+            case "/":
+            case "divisao":
+                if (num2 !== 0) {
+                    return num1 / num2;
+                } else {
+                    return "Divisão por zero não é permitida!";
+                }
+            default:
+                return "Operador inválido!";
+        }
+    }
+
+    function calcularOperacao() {
+        // Solicitar a operação ao usuário
+        var operacao = prompt("Escolha a operação colocando simbolos de operações: + (soma), - (subtração), * (multiplicação), ou / (divisão)").toLowerCase();
+
+        // Verificar se a operação é válida
+        if (operacao !== "+" && operacao !== "soma" && operacao !== "-" && operacao !== "subtracao" && operacao !== "*" && operacao !== "multiplicacao" && operacao !== "/" && operacao !== "divisao") {
+            alert("Operação inválida!");
+            return;
+        }
+
+        // Solicitar os dois números ao usuário
+        var numero1 = prompt("Insira o primeiro número:");
+        var numero2 = prompt("Insira o segundo número:");
+
+        // Verificar se os números são válidos
+        if (!isNumber(numero1) || !isNumber(numero2)) {
+            alert("Por favor, insira números válidos!");
+            return;
+        }
+
+        // Converter as entradas para números
+        numero1 = parseFloat(numero1);
+        numero2 = parseFloat(numero2);
+
+        // Calcular o resultado
+        var resultado = calcular(operacao, numero1, numero2);
+
+        // Exibir o resultado
+        alert("O resultado da " + operacao + " é: " + resultado);
+    }
+</script>
+</head>
+<body>
+  <div class="calculator-container">
+    <h1>Calculadora</h1>
+
+    <h2>Calculadora de Média</h2>
+    <button onclick="calcularMedia()">Calcular Média</button>
+
+    <h2>Calculadora Básica</h2>
+    <button onclick="calcularOperacao()">Calcular</button>
+    
+  </div>
+</body>
+</html>
